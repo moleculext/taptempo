@@ -54,7 +54,7 @@ int TapTempo::run()
             this->hitTimePoints.push(getCurrentTime());
             if(this->hitTimePoints.size() > 1)
             {
-                std::cout << "BPM:\t" << computeBPM(this->hitTimePoints.back(), this->hitTimePoints.front(), this->hitTimePoints.size() - 1) << std::endl;
+                std::cout << "\rBPM:\t" << computeBPM(this->hitTimePoints.back(), this->hitTimePoints.front(), this->hitTimePoints.size() - 1) << " ";
             }
 
             while (this->hitTimePoints.size() > this->sampleSize)

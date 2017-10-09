@@ -6,11 +6,11 @@ set (TAPTEMPO_VERSION_MINOR 1)
 set (TAPTEMPO_VERSION_REVISION 0)
 
 configure_file (
-  "${PROJECT_SOURCE_DIR}/taptempo_config.h.in"
+  "${PROJECT_SOURCE_DIR}/src/taptempo_config.h.in"
   "${PROJECT_BINARY_DIR}/taptempo_config.h"
   )
 include_directories("${PROJECT_BINARY_DIR}")
 
   
-add_executable(TapTempo main.cpp taptempo.cpp)
+add_executable(TapTempo src/main.cpp src/taptempo.cpp)
 
