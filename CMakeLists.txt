@@ -12,5 +12,5 @@ configure_file (
 include_directories("${PROJECT_BINARY_DIR}")
 
   
-add_executable(TapTempo src/main.cpp src/taptempo.cpp)
+add_executable(TapTempo src/main.cpp src/taptempo.cpp src/taptempo.h)
 
