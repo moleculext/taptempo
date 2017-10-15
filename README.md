@@ -3,17 +3,18 @@ Tap Tempo
 
 A command line tap tempo. Hit enter key with style and you'll get the corresponding number of beats per minute (bpm).
 
-# License
+## License
 
-GPL-3.0+ (see `LICENSE.txt`)
+GNU General Public License v3.0 (`GPL-3.0+`, see `LICENSE.txt`).
 
-# Build instructions
+## Build instructions
 
-Requirements:
+### Requirements:
 - CMake
-- Gettext/Intl
+- Gettext
+- Intl
 
-Basic build intructions:
+### Basic build intructions:
 ```bash
 mkdir _build
 cd _build
@@ -22,6 +23,6 @@ make
 install
 ./taptempo
 ```
-# Author
+## Author
 François Mazen (francois@mzf.fr)
 
