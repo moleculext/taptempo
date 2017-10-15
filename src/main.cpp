@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include <libintl.h>
+
 #include "taptempo.h"
 #include "taptempo_config.h"
 
@@ -7,10 +9,15 @@
 
 int main() 
 {
-	std::cout << "TAP TEMPO v" <<  TapTempo_VERSION << std::endl;
-    std::cout << "Hit enter key for each beat (q to quit)." << std::endl;
+    // Setting the i18n environment.
+    setlocale(LC_ALL, "");
+    bindtextdomain(TAPTEMPO_PACKAGE_NAME, TAPTEMPO_LOCALE_DIR);
+    textdomain(TAPTEMPO_PACKAGE_NAME);
+  
+    printf(gettext("TAP TEMPO v%s\n"), TAPTEMPO_VERSION);
+    printf(gettext("Hit enter key for each beat (q to quit).\n"));
 
-	TapTempo tapTempo(DEFAULT_SAMPLE_SIZE);
+    TapTempo tapTempo(DEFAULT_SAMPLE_SIZE);
 
-	return tapTempo.run();
+    return tapTempo.run();
 }

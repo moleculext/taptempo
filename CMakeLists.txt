@@ -1,16 +1,33 @@
 cmake_minimum_required (VERSION 2.6)
 project (TapTempo)
 
-set (TAPTEMPO_VERSION_MAJOR 0)
-set (TAPTEMPO_VERSION_MINOR 1)
-set (TAPTEMPO_VERSION_REVISION 0)
+set(TAPTEMPO_VERSION_MAJOR 0)
+set(TAPTEMPO_VERSION_MINOR 1)
+set(TAPTEMPO_VERSION_REVISION 0)
+set(TAPTEMPO_PACKAGE_NAME taptempo)
+set(TAPTEMPO_LOCALE_DIR ${CMAKE_CURRENT_BINARY_DIR})
 
 configure_file (
-  "${PROJECT_SOURCE_DIR}/src/taptempo_config.h.in"
-  "${PROJECT_BINARY_DIR}/taptempo_config.h"
-  )
+	"${PROJECT_SOURCE_DIR}/src/taptempo_config.h.in"
+	"${PROJECT_BINARY_DIR}/taptempo_config.h"
+	)
 include_directories("${PROJECT_BINARY_DIR}")
 
+find_package(Gettext REQUIRED)
+find_package(Intl REQUIRED)
   
 add_executable(TapTempo src/main.cpp src/taptempo.cpp src/taptempo.h)
 
+
+# Create a translation target to generate mo files from po files, then copy them in the localization folder.
+set(MO_FILES)
+file(GLOB PO_FILES po/*.po)
+foreach(PO_FILE ${PO_FILES})
+	get_filename_component(PO_LANG ${PO_FILE} NAME_WE)
+	set(MO_FILE ${CMAKE_CURRENT_BINARY_DIR}/${PO_LANG}.mo)
+	add_custom_command(OUTPUT ${MO_FILE} COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} -o ${MO_FILE} ${PO_FILE} DEPENDS ${PO_FILE})
+	install(FILES ${MO_FILE} DESTINATION ${TAPTEMPO_LOCALE_DIR}/${PO_LANG}/LC_MESSAGES RENAME ${TAPTEMPO_PACKAGE_NAME}.mo)
+	set(MO_FILES ${MO_FILES} ${MO_FILE})
+endforeach()
+set(TRANSLATIONS_TARGET_NAME "${TAPTEMPO_PACKAGE_NAME}-translations")
+add_custom_target(${TRANSLATIONS_TARGET_NAME} ALL DEPENDS ${MO_FILES})

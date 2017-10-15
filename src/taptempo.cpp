@@ -1,6 +1,7 @@
 #include "taptempo.h"
 
 #include <iostream>
+#include <libintl.h>
 
 TapTempo::TapTempo(size_t sampleSize) :
     sampleSize(sampleSize)
@@ -44,7 +45,7 @@ int TapTempo::run()
             if(i == 'q')
             {
                 shouldContinue = false;
-                std::cout << "Bye Bye!" << std::endl;
+                printf(gettext("Bye Bye!\n"));
                 break;
             }
         } while (i != 10);
@@ -54,7 +55,8 @@ int TapTempo::run()
             this->hitTimePoints.push(getCurrentTime());
             if(this->hitTimePoints.size() > 1)
             {
-                std::cout << "\rBPM:\t" << computeBPM(this->hitTimePoints.back(), this->hitTimePoints.front(), this->hitTimePoints.size() - 1) << " ";
+                printf("\r");
+                printf(gettext("Tempo: %.2f bpm\t"), computeBPM(this->hitTimePoints.back(), this->hitTimePoints.front(), this->hitTimePoints.size() - 1));
             }
 
             while (this->hitTimePoints.size() > this->sampleSize)
