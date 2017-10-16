@@ -24,17 +24,19 @@ set(TAPTEMPO_VERSION_REVISION 0)
 set(TAPTEMPO_PACKAGE_NAME taptempo)
 set(TAPTEMPO_LOCALE_DIR ${CMAKE_CURRENT_BINARY_DIR})
 
+add_executable(taptempo src/main.cpp src/taptempo.cpp src/taptempo.h)
+
 configure_file (
 	"${PROJECT_SOURCE_DIR}/src/taptempo_config.h.in"
 	"${PROJECT_BINARY_DIR}/taptempo_config.h"
 	)
 include_directories("${PROJECT_BINARY_DIR}")
 
+# Gettext and Intl.
 find_package(Gettext REQUIRED)
 find_package(Intl REQUIRED)
-
-add_executable(taptempo src/main.cpp src/taptempo.cpp src/taptempo.h)
-
+include_directories("${Intl_INCLUDE_DIRS}")
+target_link_libraries(taptempo "${Intl_LIBRARIES}")
 
 # Create a translation target to generate mo files from po files, then copy them in the localization folder.
 set(MO_FILES)
