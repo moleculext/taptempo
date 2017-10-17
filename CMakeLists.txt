@@ -22,7 +22,7 @@ set(TAPTEMPO_VERSION_MAJOR 1)
 set(TAPTEMPO_VERSION_MINOR 0)
 set(TAPTEMPO_VERSION_REVISION 0)
 set(TAPTEMPO_PACKAGE_NAME taptempo)
-set(TAPTEMPO_LOCALE_DIR ${CMAKE_CURRENT_BINARY_DIR})
+set(TAPTEMPO_LOCALE_DIR "share/locale")
 
 add_executable(taptempo src/main.cpp src/taptempo.cpp src/taptempo.h)
 
@@ -50,3 +50,6 @@ foreach(PO_FILE ${PO_FILES})
 endforeach()
 set(TRANSLATIONS_TARGET_NAME "${TAPTEMPO_PACKAGE_NAME}-translations")
 add_custom_target(${TRANSLATIONS_TARGET_NAME} ALL DEPENDS ${MO_FILES})
+
+# Create install target.
+install(TARGETS taptempo DESTINATION ${CMAKE_INSTALL_PREFIX}) 
