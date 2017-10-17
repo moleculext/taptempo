@@ -22,6 +22,7 @@
 #include "taptempo_config.h"
 
 #define DEFAULT_SAMPLE_SIZE 5
+#define DEFAULT_RESET_TIME 5
 
 int main() 
 {
@@ -33,7 +34,7 @@ int main()
     printf(gettext("TAP TEMPO v%s\n"), TAPTEMPO_VERSION);
     printf(gettext("Hit enter key for each beat (q to quit).\n"));
 
-    TapTempo tapTempo(DEFAULT_SAMPLE_SIZE);
+    TapTempo tapTempo(DEFAULT_SAMPLE_SIZE, DEFAULT_RESET_TIME);
 
     return tapTempo.run();
 }

@@ -20,7 +20,7 @@
 class TapTempo
 {
 public:
-    TapTempo(size_t sampleSize);
+    TapTempo(size_t sampleSize, size_t resetTimeInSecond);
     
     int run();
     
@@ -29,8 +29,10 @@ private:
     
     TIME_POINT getCurrentTime() const;
     double computeBPM(const TIME_POINT& currentTime, const TIME_POINT& lastTime, size_t occurenceCount) const;
+    bool isResetTimeElapsed(const TIME_POINT& currentTime, const TIME_POINT& lastTime) const;
     
     size_t sampleSize;
+    size_t resetTimeInSecond;
     std::queue<TIME_POINT> hitTimePoints;
     
 };

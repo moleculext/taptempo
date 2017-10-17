@@ -19,7 +19,7 @@ cmake_minimum_required (VERSION 2.6)
 project (taptempo)
 
 set(TAPTEMPO_VERSION_MAJOR 1)
-set(TAPTEMPO_VERSION_MINOR 0)
+set(TAPTEMPO_VERSION_MINOR 1)
 set(TAPTEMPO_VERSION_REVISION 0)
 set(TAPTEMPO_PACKAGE_NAME taptempo)
 set(TAPTEMPO_LOCALE_DIR "share/locale")

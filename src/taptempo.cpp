@@ -19,12 +19,18 @@
 #include <iostream>
 #include <libintl.h>
 
-TapTempo::TapTempo(size_t sampleSize) :
-    sampleSize(sampleSize)
+TapTempo::TapTempo(size_t sampleSize, size_t resetTimeInSecond) :
+    sampleSize(sampleSize),
+    resetTimeInSecond(resetTimeInSecond)
 {
     if(this->sampleSize == 0)
     {
         this->sampleSize = 1;
+    }
+    
+    if(this->resetTimeInSecond == 0)
+    {
+        this->resetTimeInSecond = 1;
     }
 }
 
@@ -47,6 +53,13 @@ TapTempo::TIME_POINT TapTempo::getCurrentTime() const
     return std::chrono::steady_clock::now();
 }
 
+bool TapTempo::isResetTimeElapsed(const TIME_POINT& currentTime, const TIME_POINT& lastTime) const
+{
+    double elapsedTime = std::chrono::duration_cast<std::chrono::duration<double> >(currentTime - lastTime).count();
+    return elapsedTime > this->resetTimeInSecond;
+}
+
+
 int TapTempo::run()
 {
     int returnCode = 0;
@@ -68,11 +81,28 @@ int TapTempo::run()
 
         if(shouldContinue)
         {
-            this->hitTimePoints.push(getCurrentTime());
+            TIME_POINT currentTime = getCurrentTime();
+            
+            // Reset if the hit diff is too big.
+            if(!this->hitTimePoints.empty() && isResetTimeElapsed(currentTime, this->hitTimePoints.back()))
+            {
+                // Clear the history.
+                while(!this->hitTimePoints.empty())
+                {
+                    this->hitTimePoints.pop();
+                }
+            }
+            
+            this->hitTimePoints.push(currentTime);
             if(this->hitTimePoints.size() > 1)
             {
                 printf("\r");
                 printf(gettext("Tempo: %.2f bpm\t"), computeBPM(this->hitTimePoints.back(), this->hitTimePoints.front(), this->hitTimePoints.size() - 1));
+            }
+            else
+            {
+                printf("\r");
+                printf(gettext("[Hit enter key one more time to start bpm computation...]"));
             }
 
             while (this->hitTimePoints.size() > this->sampleSize)

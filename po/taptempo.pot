@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: TapTempo 1.0\n"
+"Project-Id-Version: TapTempo 1.1\n"
 "Report-Msgid-Bugs-To: francois@mzf.fr\n"
-"POT-Creation-Date: 2017-10-15 17:57+0200\n"
+"POT-Creation-Date: 2017-10-17 22:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,22 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.cpp:17
+#: src/main.cpp:17 src/main.cpp:34
 #, c-format
 msgid "TAP TEMPO v%s\n"
 msgstr ""
 
-#: src/main.cpp:18
+#: src/main.cpp:18 src/main.cpp:35
 #, c-format
 msgid "Hit enter key for each beat (q to quit).\n"
 msgstr ""
 
-#: src/taptempo.cpp:48
+#: src/taptempo.cpp:48 src/taptempo.cpp:77
 #, c-format
 msgid "Bye Bye!\n"
 msgstr ""
 
-#: src/taptempo.cpp:59
+#: src/taptempo.cpp:59 src/taptempo.cpp:100
 #, c-format
 msgid "Tempo: %.2f bpm\t"
+msgstr ""
+
+#: src/taptempo.cpp:105
+#, c-format
+msgid "[Hit enter key one more time to start bpm computation...]"
 msgstr ""
