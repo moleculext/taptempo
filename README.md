@@ -14,15 +14,21 @@ GNU General Public License v3.0 (`GPL-3.0+`, see `LICENSE.txt`).
 - Gettext
 - Intl
 
-### Basic build intructions:
+### Linux
+
 ```bash
 mkdir _build
 cd _build
 cmake ..
 make
-make install
-./taptempo
+make DESTDIR="/path/to/install" install
+/path/to/install/bin/taptempo
 ```
+
+### Windows
+
+Install [MSYS2](http://www.msys2.org/) and run `msys/msys2_build.sh` script inside MSYS2 shell.
+
 ## Author
 François Mazen (francois@mzf.fr)
 
