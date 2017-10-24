@@ -1,6 +1,10 @@
 TapTempo Changelog
 ==================
 
+## 1.1.2 - 2017-10-24
+
+- Add debian package files.
+
 ## 1.1.1 - 2017-10-19
 
 - Script to build for Windows in MSYS2.
