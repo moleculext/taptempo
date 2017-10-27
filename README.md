@@ -22,8 +22,13 @@ cd _build
 cmake ..
 make
 make DESTDIR="/path/to/install" install
-/path/to/install/bin/taptempo
+./path/to/install/bin/taptempo
 ```
+
+Generate debian package:
+
+```debuild -b -us -uc```
+
 
 ### Windows
 
