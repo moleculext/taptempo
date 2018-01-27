@@ -17,11 +17,13 @@
 #include "taptempo.h"
 
 #include <iostream>
+#include <iomanip>
 #include <libintl.h>
 
-TapTempo::TapTempo(size_t sampleSize, size_t resetTimeInSecond) :
+TapTempo::TapTempo(size_t sampleSize, size_t resetTimeInSecond, size_t precision) :
     sampleSize(sampleSize),
-    resetTimeInSecond(resetTimeInSecond)
+    resetTimeInSecond(resetTimeInSecond),
+    precision(precision)
 {
     if(this->sampleSize == 0)
     {
@@ -63,6 +65,8 @@ bool TapTempo::isResetTimeElapsed(const TIME_POINT& currentTime, const TIME_POIN
 int TapTempo::run()
 {
     int returnCode = 0;
+
+    printf(gettext("Hit enter key for each beat (q to quit).\n"));
     
     bool shouldContinue = true;
     while (shouldContinue)
@@ -97,7 +101,10 @@ int TapTempo::run()
             if(this->hitTimePoints.size() > 1)
             {
                 printf("\r");
-                printf(gettext("Tempo: %.2f bpm\t"), computeBPM(this->hitTimePoints.back(), this->hitTimePoints.front(), this->hitTimePoints.size() - 1));
+                double bpm = computeBPM(this->hitTimePoints.back(), this->hitTimePoints.front(), this->hitTimePoints.size() - 1);
+                std::stringstream bpmRepresentation;
+                bpmRepresentation << std::fixed << std::setprecision(precision) << bpm;
+                printf(gettext("Tempo: %s bpm\t"), bpmRepresentation.str().c_str());
             }
             else
             {

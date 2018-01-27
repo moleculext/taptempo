@@ -20,7 +20,7 @@
 class TapTempo
 {
 public:
-    TapTempo(size_t sampleSize, size_t resetTimeInSecond);
+    TapTempo(size_t sampleSize, size_t resetTimeInSecond, size_t precision);
     
     int run();
     
@@ -33,6 +33,7 @@ private:
     
     size_t sampleSize;
     size_t resetTimeInSecond;
+    size_t precision;
     std::queue<TIME_POINT> hitTimePoints;
     
 };
