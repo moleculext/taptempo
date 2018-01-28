@@ -31,7 +31,11 @@ else()
 	set(TAPTEMPO_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/bin)
 endif()
 
-add_executable(${TAPTEMPO_PACKAGE_NAME} src/main.cpp src/taptempo.cpp src/taptempo.h)
+add_executable(${TAPTEMPO_PACKAGE_NAME} src/main.cpp
+                                        src/taptempo.cpp
+                                        src/taptempo.h
+                                        src/options.h
+                                        src/options.cpp)
 
 configure_file (
 	"${PROJECT_SOURCE_DIR}/src/taptempo_config.h.in"
