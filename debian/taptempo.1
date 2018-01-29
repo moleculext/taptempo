@@ -2,7 +2,13 @@
 .SH NAME
 taptempo \- a command line tap tempo
 .SH SYNOPSIS
-.B taptempo
+.B taptempo [-h|-v] [-r
+.I reset_time
+.B ] [-s
+.I sample_size
+.B ] [-p
+.I precision
+.B ]
 .SH DESCRIPTION
 Hit the 
 .B enter key 
@@ -16,6 +22,19 @@ then
 .B enter key
 to quit the program.
 .SH OPTIONS
-No options
+.IP "-h, --help"
+Display help message and quit.
+.IP "-p, --precision"
+Set the decimal precision of the tempo display.
+The default precision is 0 digit.
+The max allowed precision is 5 digits.
+.IP "-r, --reset-time"
+Set the time in second to reset the computation.
+Default reset time is 5 seconds.
+.IP "-s, --sample-size"
+Set the number of samples needed to compute the tempo.
+Default is 5 samples.
+.IP "-v, --version"
+Display version of the program and quit.
 .SH AUTHOR
 Francois Mazen <francois@mzf.fr>
