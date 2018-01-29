@@ -1,6 +1,13 @@
 TapTempo Changelog
 ==================
 
+## 1.2.0 - 2018-01-29
+
+- Change display decimal precision to 0 digit.
+- Add command line arguments to change reset time, sample count and precision.
+- Add help message and version.
+- Update man page.
+
 ## 1.1.2 - 2017-10-24
 
 - Add debian package files.
