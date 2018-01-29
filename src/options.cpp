@@ -39,6 +39,9 @@ Options Options::createFromArgs(int argc, char **argv)
 {
     Options options;
 
+    bool shouldPrintHelp = false;
+    bool shouldPrintVersion = false;
+
     int optionIndex = 0;
     int c = 0;
     while((c = getopt_long (argc, argv, "hvs:r:p:", longOptions, &optionIndex)) != -1)
@@ -46,11 +49,11 @@ Options Options::createFromArgs(int argc, char **argv)
         switch(c)
         {
             case 'h':
-                printHelp();
+                shouldPrintHelp = true;
                 options.shouldExit = true;
                 break;
             case 'v':
-                printVersion();
+                shouldPrintVersion = true;
                 options.shouldExit = true;
                 break;
             case '?':
@@ -85,6 +88,15 @@ Options Options::createFromArgs(int argc, char **argv)
             default:
                 break;
         }
+    }
+
+    if(shouldPrintHelp)
+    {
+        printHelp();
+    }
+    else if(shouldPrintVersion)
+    {
+        printVersion();
     }
 
     return options;
