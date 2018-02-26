@@ -15,7 +15,10 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 3.1)
+
+set (CMAKE_CXX_STANDARD 11)
+
 project (taptempo)
 
 set(TAPTEMPO_VERSION_MAJOR 1)

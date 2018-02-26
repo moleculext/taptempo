@@ -17,6 +17,7 @@
 #include "taptempo.h"
 
 #include <iostream>
+#include <sstream>
 #include <iomanip>
 #include <libintl.h>
 
