@@ -45,8 +45,12 @@ double TapTempo::computeBPM(const TapTempo::TIME_POINT& currentTime, const TapTe
     }
 
     double elapsedTime = std::chrono::duration_cast<std::chrono::duration<double> >(currentTime - lastTime).count();
-    double meanTime = elapsedTime / occurenceCount;
-    double bpm = 60.0 / meanTime;
+    double bpm = std::numeric_limits<double>::infinity();
+    if(elapsedTime > 0)
+    {
+        double meanTime = elapsedTime / occurenceCount;
+        bpm = 60.0 / meanTime;
+    }
 
     return bpm;
 }

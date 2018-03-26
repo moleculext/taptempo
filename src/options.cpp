@@ -44,6 +44,7 @@ Options Options::createFromArgs(int argc, char **argv)
 
     int optionIndex = 0;
     int c = 0;
+    int conversionBuffer = 0;
     while((c = getopt_long (argc, argv, "hvs:r:p:", longOptions, &optionIndex)) != -1)
     {
         switch(c)
@@ -61,28 +62,40 @@ Options Options::createFromArgs(int argc, char **argv)
                 options.shouldExit = true;
                 break;
             case 's':
-                options.sampleSize = atoi(optarg);
-                if(options.sampleSize <= 0)
+                conversionBuffer = atoi(optarg);
+                if(conversionBuffer <= 0)
                 {
                     options.sampleSize = Options::defaultSampleSize;
                 }
+                else
+                {
+                    options.sampleSize = conversionBuffer;
+                }
                 break;
             case 'r':
-                options.resetTime = atoi(optarg);
-                if(options.resetTime <= 0)
+                conversionBuffer = atoi(optarg);
+                if(conversionBuffer <= 0)
                 {
                     options.resetTime = Options::defaultResetTime;
                 }
+                else
+                {
+                    options.resetTime = conversionBuffer;
+                }
                 break;
             case 'p':
-                options.precision = atoi(optarg);
-                if(options.precision <= 0)
+                conversionBuffer = atoi(optarg);
+                if(conversionBuffer <= 0)
                 {
                     options.precision = Options::defaultPrecision;
                 }
-                else if(options.precision > Options::maxPrecision)
+                else if(conversionBuffer > Options::maxPrecision)
                 {
                     options.precision = Options::maxPrecision;
+                }
+                else
+                {
+                    options.precision = conversionBuffer;
                 }
                 break;
             default:
