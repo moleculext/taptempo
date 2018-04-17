@@ -31,7 +31,7 @@ Bye Bye!
 
 ```
 
-## Dowload
+## Download
 
 Check the [download server](https://download.tuxfamily.org/taptempo) for latest release.
 
